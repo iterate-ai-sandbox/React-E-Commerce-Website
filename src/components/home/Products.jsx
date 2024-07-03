@@ -26,8 +26,13 @@ export default function Products({ category, sort }) {
   const pageCount = Math.ceil(products.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
-    setItemOffset(newOffset);
+      const newOffset = (event.selected * itemsPerPage) % products.length;
+      setItemOffset(newOffset);
+      if (event.selected === 1) {
+          mixpanel.track('page_2_clicked', {
+              time: new Date().toISOString()
+          });
+      }
   };
 
   return (
