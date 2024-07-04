@@ -19,7 +19,11 @@ export default function ProductDetails({ productDetail }) {
 
   const decrement = () => {
     if (quantity > 0) setQuantity(quantity - 1);
-  };
+  });
+  mixpanel.track('item_added_to_cart', {
+    item_rating: productDetail?.rating?.rate,
+    item_price: productDetail?.price,
+    item_review_count: product
   const increment = () => {
     if (quantity < productDetail?.rating?.count) setQuantity(quantity + 1);
   };
