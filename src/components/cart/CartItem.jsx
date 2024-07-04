@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import mixpanel from 'mixpanel-browser'; 
 import { removeFromCart } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -45,7 +46,7 @@ export default function CartItem({ cart }) {
           cursor: "pointer",
           transition: "0.3s",
         }}
-        onClick={() => dispatch(removeFromCart(cart?.id))}
+        onClick={() => { dispatch(removeFromCart(cart?.id)); mixpanel.track('item_removed_from_cart', { item_name: cart?.title, item_price: cart?.price }); }}
       >
         Delete
       </Flex>
