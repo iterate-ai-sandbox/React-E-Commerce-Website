@@ -114,10 +114,10 @@ export default function Header() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={ROUTES.STORES}>Stores</Link>
+                          <Link to={ROUTES.STORES} onClick={() => { mixpanel.track('dsa', { dsa: 'dsa' }); }}>Stores</Link>
                         </li>
                         <li>
-                          <Link to={ROUTES.CONTACT}>Contacts</Link>
+                          <Link to={ROUTES.CONTACT} onClick={() => { mixpanel.track('asd', { asd: 'asd' }); }}>Contacts</Link>
                         </li>
                       </Flex>
                     </ul>
