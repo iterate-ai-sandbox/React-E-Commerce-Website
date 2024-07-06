@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import mixpanel from 'mixpanel-browser';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCartTotal } from "../redux/cartSlice";
@@ -17,7 +18,11 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     dispatch(getCartTotal());
-  }, [dispatch, carts]);
+    // Tracking static value for 'add_to_cart_pressed'
+    mixpanel.track_pageview({'add_to_cart_pressed': 'True'});
+    // Tracking dynamic value for 'cart_total'
+    mixpanel.track_pageview({'cart_total': totalAmmount});
+  }, [dispatch, carts, totalAmmount]);
 
   return (
     <Container maxW="1140px">
