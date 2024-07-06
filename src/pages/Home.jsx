@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import mixpanel from "mixpanel-browser";
 import Banner from "../components/home/Banner";
 import Brends from "../components/home/Brends";
 import { Box, Container, Flex } from "@chakra-ui/react";
@@ -13,7 +14,11 @@ import Cta from "../components/Cta";
 export default function Home() {
   const [sort, setSort] = useState("");
   const [category, setCategory] = useState("");
-  return (
+  useEffect(() => {
+      mixpanel.track_pageview({ 'on_home': 'True', 'category': category });
+    }, []);
+
+    return (
     <>
       <Banner />
       <Container maxW="1140px">
