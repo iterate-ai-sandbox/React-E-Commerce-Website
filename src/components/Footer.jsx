@@ -1,36 +1,23 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Grid,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, Grid, Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  BiLogoFacebook,
-  BiLogoYoutube,
-  BiLogoPinterestAlt,
-} from "react-icons/bi";
+import { BiLogoFacebook, BiLogoYoutube, BiLogoPinterestAlt } from "react-icons/bi";
 import { AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
 import appStore from "../assets/images/icons/appStore.png";
 import googlePlay from "../assets/images/icons/googlePlay.png";
 import heartIcon from "../assets/images/icons/heartIcon.png";
 export default function Footer() {
-  return (
-    <Box bg="var(--darkBgColor)">
+  return <Box bg="var(--darkBgColor)">
       <Container maxW="1140px">
-        <Grid
-          templateColumns={{
-            base: "repeat(1, 1fr)",
-            md: "repeat(4, 1fr)",
-            lg: "repeat(4, 1fr)",
-          }}
-          py="40px"
-          gap={{ base: "20px", md: "30px", lg: "0" }}
-        >
+        <Grid templateColumns={{
+        base: "repeat(1, 1fr)",
+        md: "repeat(4, 1fr)",
+        lg: "repeat(4, 1fr)"
+      }} py="40px" gap={{
+        base: "20px",
+        md: "30px",
+        lg: "0"
+      }}>
           <Stack gap="6px" color="var(--lightTextColor2)" fontWeight="500">
             <Text as="h5" color="var(--light)">
               HELP
@@ -83,62 +70,27 @@ export default function Footer() {
             </Text>
 
             <Flex gap="10px" mt="10px" color="var(--light)">
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--darkBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--darkBgColor2)">
                 <Link to="#">
                   <BiLogoFacebook />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--darkBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--darkBgColor2)">
                 <Link to="#">
                   <AiOutlineInstagram />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--darkBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--darkBgColor2)">
                 <Link to="#">
                   <AiOutlineTwitter />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--darkBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--darkBgColor2)">
                 <Link to="#">
                   <BiLogoYoutube />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--darkBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--darkBgColor2)">
                 <Link to="#">
                   <BiLogoPinterestAlt />
                 </Link>
@@ -173,6 +125,5 @@ export default function Footer() {
           </Flex>
         </Container>
       </Box>
-    </Box>
-  );
+    </Box>;
 }

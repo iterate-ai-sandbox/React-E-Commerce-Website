@@ -13,51 +13,45 @@ import BlogItem from "../components/BlogItem";
 import Posts from "../components/Posts";
 import Tags from "../components/Tags";
 import { ROUTES } from "../utils/routes";
+import IterateWrapper from "../IterateUtil";
+const IterateBlogItem = IterateWrapper(BlogItem, {
+  "data-iterate": "eyJldmVudHMiOlt7Im5hbWUiOiJibG9nX2NsaWNrZWQiLCJhdHRyaWJ1dGVzIjp7IkJsb2dUaXRsZSI6Ik1lbWJlckV4cHJlc3Npb24iLCJDYXRlZ29yeSI6Ik1lbWJlckV4cHJlc3Npb24iLCJEYXRlIjoiTWVtYmVyRXhwcmVzc2lvbiIsIkNvbW1lbnRzIjoiTWVtYmVyRXhwcmVzc2lvbiIsIkNvbnRlbnQiOiJNZW1iZXJFeHByZXNzaW9uIiwiSW1hZ2UiOiJNZW1iZXJFeHByZXNzaW9uIn19XSwiZmlsZVBhdGgiOiJzcmMvcGFnZXMvQmxvZy5qc3giLCJpZCI6IjI4YzgwNjVjLWJkZTAtNDZhMy1hYjI5LTIyMTI0YzNmZTQ2NiJ9"
+});
 export default function Blog() {
-  const blogsData = [
-    {
-      id: 1,
-      imgUrl: img1,
-      category: "Fashion",
-      date: "August 24, 2020",
-      comments: "No comments",
-      title: "Bag Trends for Summer 2023",
-      content:
-        "Vulputate vitae pellentesque scelerisque luctus consequat mattis pellentesque dui odio. Interdum aenean sit viverra amet,malesuada ornare sed gravida rhoncus, congue. Purus auctor nullam diam quis est hendrerit ac euismod...",
-    },
-    {
-      id: 2,
-      imgUrl: img2,
-      category: "Celebrity style",
-      date: "August 5, 2020",
-      comments: "No comments",
-      title: "Wardrobe Essentials Everyone Should Own Today",
-      content:
-        "Mauris tincidunt sollicitudin tristique odio eget volutpat. Fringilla viverra amet, mi interdum blandit. Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac...",
-    },
-    {
-      id: 3,
-      imgUrl: img3,
-      category: "Lifestyle",
-      date: "July 16, 2020",
-      comments: "No comments",
-      title: "Top 10 of This Season’s Hottest Sneakers",
-      content:
-        "Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim. Turpis viverra mattis semper pellentesque facilisis. Ut id eget sagittis lectus...",
-    },
-    {
-      id: 4,
-      imgUrl: img4,
-      category: "Fashion",
-      date: "August 2, 2020",
-      comments: "No comments",
-      title: "Modern Accessories 2020: Why Simple Isn't Easy",
-      content:
-        "Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac. Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim...",
-    },
-  ];
-  return (
-    <>
+  const blogsData = [{
+    id: 1,
+    imgUrl: img1,
+    category: "Fashion",
+    date: "August 24, 2020",
+    comments: "No comments",
+    title: "Bag Trends for Summer 2023",
+    content: "Vulputate vitae pellentesque scelerisque luctus consequat mattis pellentesque dui odio. Interdum aenean sit viverra amet,malesuada ornare sed gravida rhoncus, congue. Purus auctor nullam diam quis est hendrerit ac euismod..."
+  }, {
+    id: 2,
+    imgUrl: img2,
+    category: "Celebrity style",
+    date: "August 5, 2020",
+    comments: "No comments",
+    title: "Wardrobe Essentials Everyone Should Own Today",
+    content: "Mauris tincidunt sollicitudin tristique odio eget volutpat. Fringilla viverra amet, mi interdum blandit. Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac..."
+  }, {
+    id: 3,
+    imgUrl: img3,
+    category: "Lifestyle",
+    date: "July 16, 2020",
+    comments: "No comments",
+    title: "Top 10 of This Season’s Hottest Sneakers",
+    content: "Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim. Turpis viverra mattis semper pellentesque facilisis. Ut id eget sagittis lectus..."
+  }, {
+    id: 4,
+    imgUrl: img4,
+    category: "Fashion",
+    date: "August 2, 2020",
+    comments: "No comments",
+    title: "Modern Accessories 2020: Why Simple Isn't Easy",
+    content: "Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac. Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim..."
+  }];
+  return <>
       <Box bg="var(--lightBgColor)" py="10px">
         <Container maxW="1140px">
           <Flex gap="10px" color="var(--darkTextColor2)" align="center">
@@ -70,65 +64,51 @@ export default function Blog() {
         </Container>
       </Box>
       <Container maxW="1140px">
-        <Flex
-          justify="space-between"
-          align="center"
-          my="22px"
-          flexDirection={{ base: "column", md: "row", xl: "row" }}
-          gap={{ base: "30px", md: "0", xl: "0" }}
-        >
-          <Text
-            as="h2"
-            fontSize={{ base: "30px", md: "46px", xl: "46px" }}
-            lineHeight="60px"
-            fontWeight="900"
-            color="var(--darkBgColor)"
-          >
+        <Flex justify="space-between" align="center" my="22px" flexDirection={{
+        base: "column",
+        md: "row",
+        xl: "row"
+      }} gap={{
+        base: "30px",
+        md: "0",
+        xl: "0"
+      }}>
+          <Text as="h2" fontSize={{
+          base: "30px",
+          md: "46px",
+          xl: "46px"
+        }} lineHeight="60px" fontWeight="900" color="var(--darkBgColor)">
             Fashion blog
           </Text>
-          <Flex
-            p="10px"
-            border="1px solid var(--lightBorderColor2)"
-            justify="space-between"
-            align="center"
-            minW="340px"
-          >
-            <input
-              type="text"
-              placeholder="Search the blog..."
-              className="searchInput"
-            />
-            <Text as="span" _hover={{ cursor: "pointer" }}>
+          <Flex p="10px" border="1px solid var(--lightBorderColor2)" justify="space-between" align="center" minW="340px">
+            <input type="text" placeholder="Search the blog..." className="searchInput" data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiYzFiN2JkNWQtZWYwNi00ZDI4LTgwZTItMWJjMzQ2MTAzZjVlIiwiZmlsZVBhdGgiOiJzcmMvcGFnZXMvQmxvZy5qc3gifQ==" />
+            <Text as="span" _hover={{
+            cursor: "pointer"
+          }}>
               <BiSearch />
             </Text>
           </Flex>
         </Flex>
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            md: "3fr 2fr",
-            lg: "5fr 2fr",
-          }}
-          py="40px"
-          gap={{ base: "20px", md: "30px", lg: "60px" }}
-        >
+        <Grid templateColumns={{
+        base: "1fr",
+        md: "3fr 2fr",
+        lg: "5fr 2fr"
+      }} py="40px" gap={{
+        base: "20px",
+        md: "30px",
+        lg: "60px"
+      }}>
           <Stack gap="60px">
-            {blogsData.map((blog) => (
-              <BlogItem
-                onClick={() => {
-                  mixpanel.track("blog_clicked", {
-                    BlogTitle: blog.title,
-                    Category: blog.category,
-                    Date: blog.date,
-                    Comments: blog.comments,
-                    Content: blog.content,
-                    Image: blog.imgUrl,
-                  });
-                }}
-                key={blog.id}
-                blog={blog}
-              />
-            ))}
+            {blogsData.map(blog => <IterateBlogItem onClick={() => {
+            mixpanel.track("blog_clicked", {
+              BlogTitle: blog.title,
+              Category: blog.category,
+              Date: blog.date,
+              Comments: blog.comments,
+              Content: blog.content,
+              Image: blog.imgUrl
+            });
+          }} key={blog.id} blog={blog} />)}
           </Stack>
           <Stack gap="12px">
             <Posts />
@@ -136,6 +116,5 @@ export default function Blog() {
           </Stack>
         </Grid>
       </Container>
-    </>
-  );
+    </>;
 }

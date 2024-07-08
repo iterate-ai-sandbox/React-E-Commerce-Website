@@ -17,8 +17,7 @@ import Stores from "./pages/Stores";
 import { ROUTES } from "./utils/routes";
 export default function App() {
   mixpanel.init(import.meta.env["VITE_MIXPANEL_TOKEN"]);
-  return (
-    <Router>
+  return <Router>
       <Header />
       <Routes>
         <Route path={ROUTES.HOME} element={<Home />} exact />
@@ -32,6 +31,5 @@ export default function App() {
         <Route path={ROUTES.CONTACT} element={<Contact />} exact />
       </Routes>
       <Footer />
-    </Router>
-  );
+    </Router>;
 }
