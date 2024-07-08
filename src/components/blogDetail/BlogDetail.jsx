@@ -13,90 +13,84 @@ import braces from "../../assets/images/icons/braces.png";
 import checkIcon from "../../assets/images/icons/check.png";
 import Tags from "./Tags";
 import RelatedPosts from "./RelatedPosts";
-
 export default function BlogDetail() {
-  const blogsData = [
-    {
-      id: 1,
-      imgUrl: img1,
-      category: "Fashion",
-      date: "August 24, 2020",
-      comments: "No comments",
-      title: "Bag Trends for Summer 2023",
-      content:
-        "Vulputate vitae pellentesque scelerisque luctus consequat mattis pellentesque dui odio. Interdum aenean sit viverra amet,malesuada ornare sed gravida rhoncus, congue. Purus auctor nullam diam quis est hendrerit ac euismod...",
-    },
-    {
-      id: 2,
-      imgUrl: img2,
-      category: "Celebrity style",
-      date: "August 5, 2020",
-      comments: "No comments",
-      title: "Wardrobe Essentials Everyone Should Own Today",
-      content:
-        "Mauris tincidunt sollicitudin tristique odio eget volutpat. Fringilla viverra amet, mi interdum blandit. Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac...",
-    },
-    {
-      id: 3,
-      imgUrl: img3,
-      category: "Lifestyle",
-      date: "July 16, 2020",
-      comments: "No comments",
-      title: "Top 10 of This Season’s Hottest Sneakers",
-      content:
-        "Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim. Turpis viverra mattis semper pellentesque facilisis. Ut id eget sagittis lectus...",
-    },
-    {
-      id: 4,
-      imgUrl: img4,
-      category: "Fashion",
-      date: "August 2, 2020",
-      comments: "No comments",
-      title: "Modern Accessories 2020: Why Simple Isn't Easy",
-      content:
-        "Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac. Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim...",
-    },
-  ];
-  const { id } = useParams();
+  const blogsData = [{
+    id: 1,
+    imgUrl: img1,
+    category: "Fashion",
+    date: "August 24, 2020",
+    comments: "No comments",
+    title: "Bag Trends for Summer 2023",
+    content: "Vulputate vitae pellentesque scelerisque luctus consequat mattis pellentesque dui odio. Interdum aenean sit viverra amet,malesuada ornare sed gravida rhoncus, congue. Purus auctor nullam diam quis est hendrerit ac euismod..."
+  }, {
+    id: 2,
+    imgUrl: img2,
+    category: "Celebrity style",
+    date: "August 5, 2020",
+    comments: "No comments",
+    title: "Wardrobe Essentials Everyone Should Own Today",
+    content: "Mauris tincidunt sollicitudin tristique odio eget volutpat. Fringilla viverra amet, mi interdum blandit. Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac..."
+  }, {
+    id: 3,
+    imgUrl: img3,
+    category: "Lifestyle",
+    date: "July 16, 2020",
+    comments: "No comments",
+    title: "Top 10 of This Season’s Hottest Sneakers",
+    content: "Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim. Turpis viverra mattis semper pellentesque facilisis. Ut id eget sagittis lectus..."
+  }, {
+    id: 4,
+    imgUrl: img4,
+    category: "Fashion",
+    date: "August 2, 2020",
+    comments: "No comments",
+    title: "Modern Accessories 2020: Why Simple Isn't Easy",
+    content: "Tellus sed morbi massa quis sed. Faucibus tincidunt magna enim ultricies fringilla at rhoncus, hac. Sollicitudin et nec congue magna quis commodo quis luctus risus. Dolor, dignissim semper faucibus quisque massa ut enim..."
+  }];
+  const {
+    id
+  } = useParams();
   const blogId = parseInt(id, 10);
-
-  const blog = blogsData.find((blog) => blog.id === blogId);
-
+  const blog = blogsData.find(blog => blog.id === blogId);
   if (!blog) {
-    return <div>Blog not found.</div>;
+    return <div data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiY2RjNDdlNDktZmM2NC00ZTRjLTgzODUtYWFjYmJkYWM5MGI1IiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">Blog not found.</div>;
   }
-  return (
-    <>
+  return <>
       <Container maxW="1140px">
         <Stack mt="40px">
-          <Text
-            as="h2"
-            fontSize={{ base: "28px", md: "42px", xl: "46px" }}
-            lineHeight={{ base: "40px", md: "60px", xl: "60px" }}
-            fontWeight="900"
-            color="var(--darkBgColor)"
-            w={{ base: "full", md: "80%", xl: "80%" }}
-          >
+          <Text as="h2" fontSize={{
+          base: "28px",
+          md: "42px",
+          xl: "46px"
+        }} lineHeight={{
+          base: "40px",
+          md: "60px",
+          xl: "60px"
+        }} fontWeight="900" color="var(--darkBgColor)" w={{
+          base: "full",
+          md: "80%",
+          xl: "80%"
+        }}>
             {blog.title}
           </Text>
-          <Flex
-            justify={{
-              base: "start",
-              md: "space-between",
-              xl: "space-between",
-            }}
-            flexDirection={{ base: "column", md: "row", xl: "row" }}
-            display={{ base: "none", md: "flex", xl: "flex" }}
-          >
+          <Flex justify={{
+          base: "start",
+          md: "space-between",
+          xl: "space-between"
+        }} flexDirection={{
+          base: "column",
+          md: "row",
+          xl: "row"
+        }} display={{
+          base: "none",
+          md: "flex",
+          xl: "flex"
+        }}>
             <Flex gap="12px" align="center" color="var(--lightTextColor3)">
               <Text as="span" fontWeight="700" color="var(--primary)">
                 {blog.category}
               </Text>
-              <Text
-                as="span"
-                borderX="1px solid var(--lightTextColor3)"
-                px="6px"
-              >
+              <Text as="span" borderX="1px solid var(--lightTextColor3)" px="6px">
                 {blog.date}
               </Text>
               <Flex gap="10px" align="center">
@@ -105,57 +99,23 @@ export default function BlogDetail() {
               </Flex>
             </Flex>
 
-            <Flex
-              gap="10px"
-              mt="10px"
-              color="var(--light)"
-              pb="22px"
-              justify="center"
-            >
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--lightBgColor2)"
-              >
+            <Flex gap="10px" mt="10px" color="var(--light)" pb="22px" justify="center">
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
                 <Link to="#">
                   <BiLogoFacebook color="var(--lightTextColor3)" />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--lightBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
                 <Link to="#">
                   <BiLogoInstagram color="var(--lightTextColor3)" />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--lightBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
                 <Link to="#">
                   <AiOutlineTwitter color="var(--lightTextColor3)" />
                 </Link>
               </Flex>
-              <Flex
-                justify="center"
-                align="center"
-                as="span"
-                p="6px"
-                borderRadius="4px"
-                bg="var(--lightBgColor2)"
-              >
+              <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
                 <Link to="#">
                   <FaLinkedinIn color="var(--lightTextColor3)" />
                 </Link>
@@ -163,20 +123,14 @@ export default function BlogDetail() {
             </Flex>
           </Flex>
           <Box>
-            <Image
-              src={blog.imgUrl}
-              alt={blog.title}
-              w="full"
-              minH={{ base: "230px", md: "360px", xl: "360px" }}
-            />
+            <Image src={blog.imgUrl} alt={blog.title} w="full" minH={{
+            base: "230px",
+            md: "360px",
+            xl: "360px"
+          }} />
           </Box>
 
-          <Text
-            color="var(--darkBgColor)"
-            fontSize="20px"
-            lineHeight="30px"
-            fontWeight="700"
-          >
+          <Text color="var(--darkBgColor)" fontSize="20px" lineHeight="30px" fontWeight="700">
             {blog.content}
           </Text>
           <Text color="var(--darkTextColor2)" my={4}>
@@ -196,12 +150,7 @@ export default function BlogDetail() {
             <Box>
               <Image src={braces} />
             </Box>
-            <Text
-              color="var(--darkBgColor)"
-              fontSize="20px"
-              lineHeight="30px"
-              fontWeight="700"
-            >
+            <Text color="var(--darkBgColor)" fontSize="20px" lineHeight="30px" fontWeight="700">
               Justo, amet lectus quam viverra mus lobortis fermentum amet, eu.
               Pulvinar eu sed purus facilisi. Vitae id turpis tempus ornare
               turpis quis non. Congue tortor in tot euismod vulputate etiam
@@ -215,8 +164,8 @@ export default function BlogDetail() {
               erat mattis. Vitae mus blandit in neque amet non fringilla
               blandit:
             </Text>
-            <ul>
-              <li>
+            <ul data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiZTA3YTJjZDItZWNlZC00MDBhLTlhZGUtZjk5YzQ0OWE5NzQ4IiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">
+              <li data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiY2ZhMDAyMzEtZjM2NS00N2M2LTliNDQtMmQ2YTIwNjk4ZjRmIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">
                 <Flex gap="12px" align="center" my={1}>
                   <Box>
                     <Image src={checkIcon} />
@@ -227,7 +176,7 @@ export default function BlogDetail() {
                   </Text>
                 </Flex>
               </li>
-              <li>
+              <li data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiMzg1OTlhNzctMTk0Yy00OGY3LWIxODMtNDJhNDgzNjUwMmUwIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">
                 <Flex gap="12px" align="center" my={1}>
                   <Box>
                     <Image src={checkIcon} />
@@ -235,7 +184,7 @@ export default function BlogDetail() {
                   <Text>Vulputate placerat amet pulvinar lorem nisl.</Text>
                 </Flex>
               </li>
-              <li>
+              <li data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiYjg0MDY2MmItMGNmNi00MTA4LWI2MGUtMzIwNDllNTNlMDU2IiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">
                 <Flex gap="12px" align="center" my={1}>
                   <Box>
                     <Image src={checkIcon} />
@@ -246,7 +195,7 @@ export default function BlogDetail() {
                   </Text>
                 </Flex>
               </li>
-              <li>
+              <li data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiNjU3MWJkNTUtMjk2NC00ZWQ0LWE0OGYtYjg2NDIwODFlMjcwIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ibG9nRGV0YWlsL0Jsb2dEZXRhaWwuanN4In0=">
                 <Flex gap="12px" align="center" my={1}>
                   <Box>
                     <Image src={checkIcon} />
@@ -273,6 +222,5 @@ export default function BlogDetail() {
         </Stack>
       </Container>
       <RelatedPosts blogsData={blogsData} />
-    </>
-  );
+    </>;
 }

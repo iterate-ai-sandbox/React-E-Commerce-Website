@@ -7,8 +7,7 @@ import { ROUTES } from "../utils/routes";
 import AccordionComp from "../components/AccordionComp";
 import Subscribe from "../components/Subscribe";
 export default function FAQ() {
-  return (
-    <>
+  return <>
       <Box bg="var(--lightBgColor)" py="10px">
         <Container maxW="1140px">
           <Flex gap="10px" color="var(--darkTextColor2)" align="center">
@@ -21,23 +20,16 @@ export default function FAQ() {
         </Container>
       </Box>
       <Container maxW="1140px">
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            md: "1fr",
-            lg: "1fr 3fr",
-          }}
-          py="40px"
-          mb="60px"
-          gap={{ base: "20px", md: "30px", lg: "0" }}
-        >
-          <Text
-            as="h3"
-            color="var(--primary)"
-            fontSize="28px"
-            fontWeight="700"
-            lineHeight="42px"
-          >
+        <Grid templateColumns={{
+        base: "1fr",
+        md: "1fr",
+        lg: "1fr 3fr"
+      }} py="40px" mb="60px" gap={{
+        base: "20px",
+        md: "30px",
+        lg: "0"
+      }}>
+          <Text as="h3" color="var(--primary)" fontSize="28px" fontWeight="700" lineHeight="42px">
             FAQ
           </Text>
           <Box>
@@ -46,6 +38,5 @@ export default function FAQ() {
         </Grid>
       </Container>
       <Subscribe />
-    </>
-  );
+    </>;
 }
