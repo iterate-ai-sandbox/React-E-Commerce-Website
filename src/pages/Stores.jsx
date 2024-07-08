@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Flex, Grid, Text } from "@chakra-ui/react";
 import { GrHomeRounded } from "react-icons/gr";
 import { BsChevronRight } from "react-icons/bs";
@@ -10,7 +10,11 @@ import img3 from "../assets/images/stores/store3.png";
 import img4 from "../assets/images/stores/store4.png";
 import StoreCard from "../components/StoreCard";
 import Subscribe from "../components/Subscribe";
+import mixpanel from 'mixpanel-browser';
 export default function Stores() {
+  useEffect(() => {
+    mixpanel.track_pageview({'client_visited_stores': 'True'});
+  }, []);
   const storesData = [
     {
       id: 1,
