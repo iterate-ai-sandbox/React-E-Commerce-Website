@@ -6,11 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductCategory, getProducts } from "../../redux/productSlice";
 import Loading from "../Loading";
 import Product from "./Product";
-
-export default function Products({ category, sort }) {
+import IterateWrapper from "../../IterateUtil";
+const IterateProduct = IterateWrapper(Product, {
+  "data-iterate": "eyJldmVudHMiOlt7Im5hbWUiOiJwcm9kdWN0X2NsaWNrZWQiLCJhdHRyaWJ1dGVzIjp7InByb2R1Y3QiOiJNZW1iZXJFeHByZXNzaW9uIiwicHJpY2UiOiJNZW1iZXJFeHByZXNzaW9uIiwiY2F0ZWdvcnkiOiJNZW1iZXJFeHByZXNzaW9uIn19XSwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ob21lL1Byb2R1Y3RzLmpzeCIsImlkIjoiNDNmYWUzNjEtM2QxMi00YThmLWFjMjYtOGZhZWQxZGQ0NTZkIn0="
+});
+export default function Products({
+  category,
+  sort
+}) {
   const dispatch = useDispatch();
-  const { products, productsStatus } = useSelector((state) => state.products);
-
+  const {
+    products,
+    productsStatus
+  } = useSelector(state => state.products);
   useEffect(() => {
     if (category) {
       dispatch(getProductCategory(category));
@@ -18,63 +26,31 @@ export default function Products({ category, sort }) {
       dispatch(getProducts());
     }
   }, [dispatch, category]);
-
   const itemsPerPage = 6;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = products.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(products.length / itemsPerPage);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
+  const handlePageClick = event => {
+    const newOffset = event.selected * itemsPerPage % products.length;
     setItemOffset(newOffset);
   };
-
-  return (
-    <div>
-      {productsStatus === "LOADING" ? (
-        <Loading />
-      ) : (
-        <>
-          <Grid
-            templateColumns={{
-              base: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(3, 1fr)",
-            }}
-            gap={6}
-            w="full"
-          >
-            {currentItems
-              ?.sort((a, b) =>
-                sort === "increment" ? a.price - b.price : b.price - a.price
-              )
-              .map((product, id) => (
-                <Product
-                  onClick={() => {
-                    mixpanel.track("product_clicked", {
-                      product: product.name,
-                      price: product.price,
-                      category: product.category,
-                    });
-                  }}
-                  key={id}
-                  product={product}
-                />
-              ))}
+  return <div data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiODUxOGNjNDUtZjY0Ny00ZTQzLWIzNmItYTNmMWFlNDU1YmYxIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9ob21lL1Byb2R1Y3RzLmpzeCJ9">
+      {productsStatus === "LOADING" ? <Loading /> : <>
+          <Grid templateColumns={{
+        base: "repeat(1, 1fr)",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)"
+      }} gap={6} w="full">
+            {currentItems?.sort((a, b) => sort === "increment" ? a.price - b.price : b.price - a.price).map((product, id) => <IterateProduct onClick={() => {
+          mixpanel.track("product_clicked", {
+            product: product.name,
+            price: product.price,
+            category: product.category
+          });
+        }} key={id} product={product} />)}
           </Grid>
-          <ReactPaginate
-            className="paginate"
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-          />
-        </>
-      )}
-    </div>
-  );
+          <ReactPaginate className="paginate" breakLabel="..." nextLabel=">" onPageChange={handlePageClick} pageRangeDisplayed={5} pageCount={pageCount} previousLabel="<" renderOnZeroPageCount={null} />
+        </>}
+    </div>;
 }

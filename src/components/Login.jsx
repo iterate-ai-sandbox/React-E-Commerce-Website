@@ -4,37 +4,26 @@ import { Link } from "react-router-dom";
 import { BiLogoFacebook } from "react-icons/bi";
 import { AiOutlineTwitter, AiOutlineGoogle } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
-export default function Login({ onSignUpClick, onCloseLoginModal }) {
-  return (
-    <Stack px="40px">
+export default function Login({
+  onSignUpClick,
+  onCloseLoginModal
+}) {
+  return <Stack px="40px">
       <Text color="var(--lightTextColor3)" fontSize="14px" textAlign="center">
         Sign in to your account using email and password provided during
         registration.
       </Text>
-      <form>
-        <Stack
-          gap="16px"
-          pb="8px"
-          borderBottom="1px solid var(--lightBorderColor)"
-        >
+      <form data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiMTliZmE5OWMtNzZmMC00MDBhLTlhNWItN2U3ZTI4ZTgxODkzIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9Mb2dpbi5qc3gifQ==">
+        <Stack gap="16px" pb="8px" borderBottom="1px solid var(--lightBorderColor)">
           <Text as="label" color="var(--darkTextColor2)" fontSize="14px">
             Email
           </Text>
-          <input
-            type="text"
-            className="loginInput"
-            placeholder="Your working email"
-            fontSize="12px"
-          />
+          <input type="text" className="loginInput" placeholder="Your working email" fontSize="12px" data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiNmViZDllNjktZWJkNC00YjNlLWIzOTgtN2FhMGU0NTExYzE1IiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9Mb2dpbi5qc3gifQ==" />
 
           <Text as="label" color="var(--darkTextColor2)" fontSize="14px">
             Password
           </Text>
-          <input
-            type="password"
-            className="loginInput"
-            placeholder="Password"
-          />
+          <input type="password" className="loginInput" placeholder="Password" data-iterate="eyJldmVudHMiOm51bGwsImlkIjoiZDM1NTc3M2MtMzM3My00NTIyLTg2NWUtYTZkZWYwY2FmZjcyIiwiZmlsZVBhdGgiOiJzcmMvY29tcG9uZW50cy9Mb2dpbi5qc3gifQ==" />
 
           <Flex align="center" justify="space-between" gap="10px" mt={4}>
             <Checkbox color="var(--darkTextColor2)">Keep me signed in</Checkbox>
@@ -42,36 +31,20 @@ export default function Login({ onSignUpClick, onCloseLoginModal }) {
               Forgot Password?
             </Text>
           </Flex>
-          <Flex
-            bg="var(--primary)"
-            color="var(--light)"
-            w="full"
-            borderRadius="4px"
-            justify="center"
-            align="center"
-            py="10px"
-            border="1px solid var(--primary)"
-            _hover={{
-              bg: "transparent",
-              color: "var(--primary)",
-              transition: "0.8s",
-              cursor: "pointer",
-            }}
-          >
+          <Flex bg="var(--primary)" color="var(--light)" w="full" borderRadius="4px" justify="center" align="center" py="10px" border="1px solid var(--primary)" _hover={{
+          bg: "transparent",
+          color: "var(--primary)",
+          transition: "0.8s",
+          cursor: "pointer"
+        }}>
             Sign in
           </Flex>
           <Text>
             Don't have an account?
-            <Text
-              onClick={() => {
-                onSignUpClick();
-                onCloseLoginModal();
-              }}
-              as="span"
-              color="var(--primary)"
-              ml="4px"
-              cursor="pointer"
-            >
+            <Text onClick={() => {
+            onSignUpClick();
+            onCloseLoginModal();
+          }} as="span" color="var(--primary)" ml="4px" cursor="pointer">
               Sign up
             </Text>
           </Text>
@@ -81,62 +54,27 @@ export default function Login({ onSignUpClick, onCloseLoginModal }) {
       <Text textAlign="center" fontSize="14px" color="var(--lightTextColor3)">
         Or sign in with
       </Text>
-      <Flex
-        gap="10px"
-        mt="10px"
-        color="var(--light)"
-        pb="22px"
-        justify="center"
-      >
-        <Flex
-          justify="center"
-          align="center"
-          as="span"
-          p="6px"
-          borderRadius="4px"
-          bg="var(--lightBgColor2)"
-        >
+      <Flex gap="10px" mt="10px" color="var(--light)" pb="22px" justify="center">
+        <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
           <Link to="#">
             <BiLogoFacebook color="var(--lightTextColor3)" />
           </Link>
         </Flex>
-        <Flex
-          justify="center"
-          align="center"
-          as="span"
-          p="6px"
-          borderRadius="4px"
-          bg="var(--lightBgColor2)"
-        >
+        <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
           <Link to="#">
             <AiOutlineGoogle color="var(--lightTextColor3)" />
           </Link>
         </Flex>
-        <Flex
-          justify="center"
-          align="center"
-          as="span"
-          p="6px"
-          borderRadius="4px"
-          bg="var(--lightBgColor2)"
-        >
+        <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
           <Link to="#">
             <AiOutlineTwitter color="var(--lightTextColor3)" />
           </Link>
         </Flex>
-        <Flex
-          justify="center"
-          align="center"
-          as="span"
-          p="6px"
-          borderRadius="4px"
-          bg="var(--lightBgColor2)"
-        >
+        <Flex justify="center" align="center" as="span" p="6px" borderRadius="4px" bg="var(--lightBgColor2)">
           <Link to="#">
             <FaLinkedinIn color="var(--lightTextColor3)" />
           </Link>
         </Flex>
       </Flex>
-    </Stack>
-  );
+    </Stack>;
 }
