@@ -1,18 +1,19 @@
-import { Image, Text, Flex, Container, Grid, Stack } from "@chakra-ui/react";
+import { Container, Flex, Grid, Image, Stack, Text } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import stroke from '../../assets/images/icons/stroke.png';
+import star from '../../assets/images/icons/star.png';
+import visaIcon from '../../assets/images/icons/visa.png';
+import paypalIcon from '../../assets/images/icons/paypal.png';
+import masterIcon from '../../assets/images/icons/master.png';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { addToCart } from '../../redux/cartSlice';
+import mixpanel from 'mixpanel-browser';
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import stroke from "../../assets/images/icons/stroke.png";
-import star from "../../assets/images/icons/star.png";
-import visaIcon from "../../assets/images/icons/visa.png";
-import paypalIcon from "../../assets/images/icons/paypal.png";
-import masterIcon from "../../assets/images/icons/master.png";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import {
   BiLogoFacebook,
   BiLogoTwitter,
   BiLogoPinterestAlt,
 } from "react-icons/bi";
-import { addToCart } from "../../redux/cartSlice";
 export default function ProductDetails({ productDetail }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
@@ -21,7 +22,12 @@ export default function ProductDetails({ productDetail }) {
     if (quantity > 0) setQuantity(quantity - 1);
   };
   const increment = () => {
-    if (quantity < productDetail?.rating?.count) setQuantity(quantity + 1);
+    if (quantity < productDetail?.rating?.count) {
+      setQuantity(quantity + 1);
+      mixpanel.track("increment_quantity", {
+        "current quantity": quantity + 1,
+      });
+    }
   };
   console.log(quantity, "quantity");
   const addBasket = () => {
@@ -32,8 +38,9 @@ export default function ProductDetails({ productDetail }) {
         price: productDetail?.price,
         image: productDetail?.image,
         quantity: quantity,
-      })
+      }),
     );
+    mixpanel.track("added_to_cart", { price: productDetail?.price });
   };
 
   return (
