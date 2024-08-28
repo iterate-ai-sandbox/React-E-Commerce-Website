@@ -1,82 +1,62 @@
-import { Image, Text, Flex, Container, Grid, Stack } from "@chakra-ui/react";
+import { Container, Flex, Grid, Image, Stack, Text } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import stroke from '../../assets/images/icons/stroke.png';
+import star from '../../assets/images/icons/star.png';
+import visaIcon from '../../assets/images/icons/visa.png';
+import paypalIcon from '../../assets/images/icons/paypal.png';
+import masterIcon from '../../assets/images/icons/master.png';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { , BiLogoFacebook, BiLogoPinterestAlt, BiLogoTwitter } from 'react-icons/bi';
+import { addToCart } from '../../redux/cartSlice';
+import mixpanel from 'mixpanel-browser';
+import PropTypes from 'prop-types';
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import stroke from "../../assets/images/icons/stroke.png";
-import star from "../../assets/images/icons/star.png";
-import visaIcon from "../../assets/images/icons/visa.png";
-import paypalIcon from "../../assets/images/icons/paypal.png";
-import masterIcon from "../../assets/images/icons/master.png";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import {
-  BiLogoFacebook,
-  BiLogoTwitter,
-  BiLogoPinterestAlt,
-} from "react-icons/bi";
-import { addToCart } from "../../redux/cartSlice";
 export default function ProductDetails({ productDetail }) {
-  const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(0);
+ const dispatch = useDispatch();
+ const [quantity, setQuantity] = useState(0);
 
-  const decrement = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
-  };
-  const increment = () => {
-    if (quantity < productDetail?.rating?.count) setQuantity(quantity + 1);
-  };
-  console.log(quantity, "quantity");
-  const addBasket = () => {
-    dispatch(
-      addToCart({
-        id: productDetail?.id,
-        title: productDetail?.title,
-        price: productDetail?.price,
-        image: productDetail?.image,
-        quantity: quantity,
-      })
-    );
-  };
+ const decrement = () => {
+if (quantity > 0) setQuantity(quantity - 1);
+ };
+ const increment = () => { if (quantity < productDetail?.rating?.count) { setQuantity(quantity + 1); mixpanel.track('increment_quantity', { 'current quantity': quantity + 1 }); } };
+ console.log(quantity, "quantity");
+ const addBasket = () => {
+ dispatch(
 
-  return (
-    <Container maxW="1140px">
-      <Text
-        fontSize="24px"
-        fontWeight="600"
-        pb="16px"
-        borderBottom="1px solid #d1d2d7"
-        mt="20px"
-      >
-        {productDetail?.title}
-      </Text>
-      <Grid
-        templateColumns={{
-          base: "repeat(1, 1fr)",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(2, 1fr)",
-        }}
-        my="40px"
-      >
-        <Flex
-          w={{ base: "100%", md: "70%", xl: "50%" }}
-          align="center"
-          justify="center"
-        >
-          <Image src={productDetail?.image} w="350px" h="350px" />
-        </Flex>
-        <Stack gap="10px">
-          <Flex justify="space-between" pb="10px">
-            <Flex gap="20px" align="center">
-              <Text fontWeight="600" fontSize="20px" color="#ff4242">
-                ${productDetail?.price}
-              </Text>
-              <Text as="s" fontWeight="600" fontSize="20px" color="#c3c4c7">
-                ${productDetail?.price * 2}
-              </Text>
-              <Flex
-                w="50px"
-                h="20px"
-                p="14px"
-                bg="#ff4242"
-                borderRadius="4px"
+ProductDetails.propTypes = {
+ productDetail: PropTypes.object.isRequired,
+}; addToCart({
+ id: productDetail?.id,
+ title: productDetail?.title,
+ price: productDetail?.price,
+ image: productDetail?.image,
+ quantity: quantity,
+ }),
+ );
+ mixpanel.track('added_to_cart', { price: productDetail?.price, });
+};
+
+return ( <Container maxW="1140px"> <Text fontSize="24px" fontWeight="600" pb="16px" borderBottom="1px solid #d1d2d7" mt="20px" > {productDetail?.title} </Text> <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(2, 1fr)" }} my="40px" > <Flex           w={{ base: "100%", md: "70%", xl: "50%" }}
+align="center"
+ justify="center"
+ >
+ <Image src={productDetail?.image} w="350px" h="350px" />
+ </Flex>
+ <Stack gap="10px">
+ <Flex justify="space-between" pb="10px">
+ <Flex gap="20px" align="center">
+ <Text fontWeight="600" fontSize="20px" color="#ff4242">
+ ${productDetail?.price}
+ </Text>
+ <Text as="s" fontWeight="600" fontSize="20px" color="#c3c4c7">
+ ${productDetail?.price * 2}
+ </Text>
+ <Flex
+ w="50px"
+ h="20px"
+ p="14px"
+ bg="#ff4242"
+ borderRadius="4px"
                 align="center"
                 justify="center"
                 color="var(--light)"
@@ -90,26 +70,26 @@ export default function ProductDetails({ productDetail }) {
                 <Image src={stroke} />
                 <Image src={stroke} />
                 <Image src={stroke} />
-                <Image src={star} />
-              </Flex>
-              <Text color="#787a80" fontWeight="500">
-                12 views
-              </Text>
-            </Stack>
-          </Flex>
+<Image src={star} />
+ </Flex>
+ <Text color="#787a80" fontWeight="500">
+ 12 views
+ </Text>
+ </Stack>
+ </Flex>
 
-          <Text fontWeight="600" fontSize="18px">
-            Rating: {productDetail?.rating?.rate}
-          </Text>
-          <Text fontWeight="600" fontSize="18px">
-            Count: {productDetail?.rating?.count}
-          </Text>
+ <Text fontWeight="600" fontSize="18px">
+ Rating: {productDetail?.rating?.rate}
+ </Text>
+ <Text fontWeight="600" fontSize="18px">
+ Count: {productDetail?.rating?.count}
+ </Text>
 
-          <Flex>
-            <Flex justify="space-between" w="full" my="20px">
-              <Flex gap="10px">
-                <Flex
-                  w="20px"
+ <Flex>
+ <Flex justify="space-between" w="full" my="20px">
+ <Flex gap="10px">
+ <Flex
+ w="20px"
                   h="20px"
                   border="1px solid var(--primary)"
                   borderRadius="4px"
