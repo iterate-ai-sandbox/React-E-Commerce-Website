@@ -1,15 +1,16 @@
-import React from "react";
-import { Box, Container, Flex, Grid, Text } from "@chakra-ui/react";
-import { GrHomeRounded } from "react-icons/gr";
-import { BsChevronRight } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../utils/routes";
-import img1 from "../assets/images/stores/store1.png";
-import img2 from "../assets/images/stores/store2.png";
-import img3 from "../assets/images/stores/store3.png";
-import img4 from "../assets/images/stores/store4.png";
-import StoreCard from "../components/StoreCard";
-import Subscribe from "../components/Subscribe";
+import React, { useEffect } from 'react';
+import { Box, Container, Flex, Grid, Text } from '@chakra-ui/react';
+import { GrHomeRounded } from 'react-icons/gr';
+import { BsChevronRight } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../utils/routes';
+import img1 from '../assets/images/stores/store1.png';
+import img2 from '../assets/images/stores/store2.png';
+import img3 from '../assets/images/stores/store3.png';
+import img4 from '../assets/images/stores/store4.png';
+import StoreCard from '../components/StoreCard';
+import Subscribe from '../components/Subscribe';
+import mixpanel from 'mixpanel-browser';
 export default function Stores() {
   const storesData = [
     {
@@ -49,6 +50,10 @@ export default function Stores() {
       address: "8502 Preston Rd. Inglewood, Maine 98380",
     },
   ];
+  useEffect(() => {
+    mixpanel.track("Stores page opened", { existing_stores: storesData });
+  }, []);
+
   return (
     <>
       <Box bg="var(--lightBgColor)" py="10px">
