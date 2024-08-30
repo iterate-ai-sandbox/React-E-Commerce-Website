@@ -1,18 +1,19 @@
-import { Image, Text, Flex, Container, Grid, Stack } from "@chakra-ui/react";
+import { Container, Flex, Grid, Image, Stack, Text } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import stroke from '../../assets/images/icons/stroke.png';
+import star from '../../assets/images/icons/star.png';
+import visaIcon from '../../assets/images/icons/visa.png';
+import paypalIcon from '../../assets/images/icons/paypal.png';
+import masterIcon from '../../assets/images/icons/master.png';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { addToCart } from '../../redux/cartSlice';
+import PropTypes from 'prop-types';
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import stroke from "../../assets/images/icons/stroke.png";
-import star from "../../assets/images/icons/star.png";
-import visaIcon from "../../assets/images/icons/visa.png";
-import paypalIcon from "../../assets/images/icons/paypal.png";
-import masterIcon from "../../assets/images/icons/master.png";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import {
   BiLogoFacebook,
   BiLogoTwitter,
   BiLogoPinterestAlt,
 } from "react-icons/bi";
-import { addToCart } from "../../redux/cartSlice";
 export default function ProductDetails({ productDetail }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
@@ -24,6 +25,10 @@ export default function ProductDetails({ productDetail }) {
     if (quantity < productDetail?.rating?.count) setQuantity(quantity + 1);
   };
   console.log(quantity, "quantity");
+
+  ProductDetails.propTypes = {
+    productDetail: PropTypes.object.isRequired,
+  };
   const addBasket = () => {
     dispatch(
       addToCart({
@@ -32,12 +37,13 @@ export default function ProductDetails({ productDetail }) {
         price: productDetail?.price,
         image: productDetail?.image,
         quantity: quantity,
-      })
+      }),
     );
   };
 
   return (
     <Container maxW="1140px">
+      {" "}
       <Text
         fontSize="24px"
         fontWeight="600"
@@ -45,8 +51,9 @@ export default function ProductDetails({ productDetail }) {
         borderBottom="1px solid #d1d2d7"
         mt="20px"
       >
-        {productDetail?.title}
-      </Text>
+        {" "}
+        {productDetail?.title}{" "}
+      </Text>{" "}
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",
@@ -55,6 +62,7 @@ export default function ProductDetails({ productDetail }) {
         }}
         my="40px"
       >
+        {" "}
         <Flex
           w={{ base: "100%", md: "70%", xl: "50%" }}
           align="center"

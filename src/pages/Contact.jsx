@@ -1,12 +1,13 @@
-import { Box, Container, Flex, Grid, Stack, Text } from "@chakra-ui/react";
-import React from "react";
-import { AiOutlineMail } from "react-icons/ai";
-import { BiLogoTwitter, BiMessageRoundedDetail } from "react-icons/bi";
-import { BsChevronRight, BsPhone } from "react-icons/bs";
-import { GrHomeRounded } from "react-icons/gr";
-import { Link } from "react-router-dom";
-import Subscribe from "../components/Subscribe";
-import { ROUTES } from "../utils/routes";
+import { Box, Container, Flex, Grid, Stack, Text } from '@chakra-ui/react';
+import React from 'react';
+import { AiOutlineMail } from 'react-icons/ai';
+import { BiLogoTwitter, BiMessageRoundedDetail } from 'react-icons/bi';
+import { BsChevronRight, BsPhone } from 'react-icons/bs';
+import { GrHomeRounded } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
+import Subscribe from '../components/Subscribe';
+import { ROUTES } from '../utils/routes';
+import mixpanel from 'mixpanel-browser';
 export default function Contact() {
   return (
     <>
@@ -155,6 +156,11 @@ export default function Contact() {
                     color: "var(--primary)",
                     transition: "0.8s",
                     cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    mixpanel.track("sent_message", {
+                      "sent form entries": "FGK112",
+                    });
                   }}
                 >
                   Send message
