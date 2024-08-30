@@ -1,5 +1,4 @@
 import { Box, Container, Flex, Grid, Stack, Text } from "@chakra-ui/react";
-import mixpanel from "mixpanel-browser";
 import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiLogoTwitter, BiMessageRoundedDetail } from "react-icons/bi";
@@ -143,12 +142,6 @@ export default function Contact() {
                 />
 
                 <Flex
-                  onClick={() => {
-                    mixpanel.track("send_message_clicked", {
-                      Location: "Contact",
-                      date: new Date().toISOString(),
-                    });
-                  }}
                   w={{ base: "full", md: "40%", xl: "40%" }}
                   bg="var(--primary)"
                   color="var(--light)"
